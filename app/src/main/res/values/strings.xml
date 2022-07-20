@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">WTest</string>
+    <string name="not_applicable">N/A</string>
+    <string name="repo_owner_login">By %s</string>
+    <string name="repo_description_label">Description</string>
+    <string name="repo_language_label">Language</string>
+    <string name="repo_watchers_label">Watchers</string>
+    <string name="repo_forks_label">Forks</string>
+    <string name="repo_last_update_label">Last Update</string>
 </resources>
