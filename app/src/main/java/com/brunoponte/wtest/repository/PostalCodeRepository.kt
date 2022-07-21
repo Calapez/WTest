@@ -34,6 +34,7 @@ class PostalCodeRepository(
 
     override suspend fun searchPostalCodes(pageSize: Int, page: Int, query: String) : List<PostalCode> {
         try {
+            val tokens = query.split(" ")
             val x = PostalCodeEntityMapper.toDomainModelList(postalCodeDao.searchPostalCodes(pageSize, page, query))
             return x
         } catch (e: Exception) {

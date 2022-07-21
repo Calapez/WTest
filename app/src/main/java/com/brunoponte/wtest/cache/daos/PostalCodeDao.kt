@@ -11,7 +11,7 @@ interface PostalCodeDao {
 
     @Query("""
         SELECT * FROM postal_codes 
-        WHERE number LIKE '%' || :query || '%' OR extension LIKE '%' || :query || '%' OR designation LIKE '%' || :query || '%'
+        WHERE code LIKE '%' || :query || '%'  OR designation LIKE '%' || :query || '%'
         LIMIT :pageSize 
         OFFSET (:pageSize * (:page - 1))""")
     suspend fun searchPostalCodes(pageSize: Int, page: Int, query: String): List<PostalCodeEntity>

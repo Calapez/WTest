@@ -7,14 +7,12 @@ class PostalCodeEntityMapper {
     companion object {
 
         fun mapToEntity(domainModel: PostalCode) = PostalCodeEntity (
-            number = domainModel.number,
-            extension = domainModel.extension,
+            code = domainModel.code,
             designation = domainModel.designation,
         )
 
         fun mapToDomainModel(entity: PostalCodeEntity) = PostalCode (
-            number = entity.number,
-            extension = entity.extension,
+            code = entity.code,
             designation = entity.designation,
         )
 

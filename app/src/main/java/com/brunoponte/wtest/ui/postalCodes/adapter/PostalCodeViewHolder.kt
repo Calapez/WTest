@@ -9,7 +9,7 @@ class PostalCodeViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(postalCode: PostalCode) {
-        binding.textCode.text = "${postalCode.number}-${postalCode.extension}"
+        binding.textCode.text = postalCode.code
         binding.textName.text = postalCode.designation
     }
 }

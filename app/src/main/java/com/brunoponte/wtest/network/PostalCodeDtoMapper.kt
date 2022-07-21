@@ -7,8 +7,7 @@ class PostalCodeDtoMapper {
     companion object {
 
         fun mapToDomainModel(dto: PostalCodeDto) = PostalCode (
-            number = dto.number,
-            extension = dto.extension,
+            code = "${dto.number}-${dto.extension}",
             designation = dto.designation,
         )
 

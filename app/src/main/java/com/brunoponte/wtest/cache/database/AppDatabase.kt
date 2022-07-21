@@ -7,7 +7,7 @@ import com.brunoponte.wtest.cache.entities.PostalCodeEntity
 
 @Database(
     entities = [PostalCodeEntity::class],
-    version = 2)
+    version = 3)
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun postalCodeDao(): PostalCodeDao

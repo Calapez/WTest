@@ -2,9 +2,8 @@ package com.brunoponte.wtest.cache.entities
 
 import androidx.room.Entity
 
-@Entity(tableName = "postal_codes", primaryKeys = ["number","extension","designation"])
+@Entity(tableName = "postal_codes", primaryKeys = ["code", "designation"])
 data class PostalCodeEntity(
-    val number: String,
-    val extension: String,
+    val code: String,
     val designation: String,
 )
