@@ -7,7 +7,13 @@ import androidx.recyclerview.widget.ListAdapter
 import com.brunoponte.wtest.databinding.PostalCodeListItemBinding
 import com.brunoponte.wtest.domainModels.PostalCode
 
-class PostalCodeListAdapter : ListAdapter<PostalCode, PostalCodeViewHolder>(PostalCodeListAdapter) {
+interface PostalCodeListInteraction {
+    fun onIndexReached(index: Int)
+}
+
+class PostalCodeListAdapter(
+    private val interaction: PostalCodeListInteraction
+) : ListAdapter<PostalCode, PostalCodeViewHolder>(PostalCodeListAdapter) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostalCodeViewHolder {
         val itemBinding = PostalCodeListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -16,6 +22,7 @@ class PostalCodeListAdapter : ListAdapter<PostalCode, PostalCodeViewHolder>(Post
 
     override fun onBindViewHolder(holder: PostalCodeViewHolder, position: Int) {
         holder.bind(getItem(position))
+        interaction.onIndexReached(position)
     }
 
     private companion object : DiffUtil.ItemCallback<PostalCode>() {

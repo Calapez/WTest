@@ -16,7 +16,7 @@ class PostalCodeRepository(
 ) : IPostalCodeRepository {
 
     override suspend fun fetchPostalCodes() {
-        if (postalCodeDao.getPostalCodes().isNotEmpty()) {
+        if (postalCodeDao.countPostalCodes() > 0) {
             // Postal Codes already in cache, don't fetch in network.
             return
         }
@@ -32,10 +32,10 @@ class PostalCodeRepository(
         }
     }
 
-    override suspend fun searchPostalCodes(query: String) : List<PostalCode> {
+    override suspend fun searchPostalCodes(pageSize: Int, page: Int, query: String) : List<PostalCode> {
         try {
-            val x = PostalCodeEntityMapper.toDomainModelList(if (query.isEmpty()) postalCodeDao.getPostalCodes()
-            else postalCodeDao.searchPostalCodes(query))
+            val x = PostalCodeEntityMapper.toDomainModelList(if (query.isEmpty()) postalCodeDao.getPostalCodes(pageSize, page)
+            else postalCodeDao.searchPostalCodes(pageSize, page, query))
             return x
         } catch (e: Exception) {
             return listOf()

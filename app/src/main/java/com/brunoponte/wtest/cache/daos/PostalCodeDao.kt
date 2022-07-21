@@ -9,11 +9,21 @@ import com.brunoponte.wtest.cache.entities.PostalCodeEntity
 @Dao
 interface PostalCodeDao {
 
-    @Query("SELECT * FROM postal_codes")
-    suspend fun getPostalCodes(): List<PostalCodeEntity>
+    @Query("""
+        SELECT * FROM postal_codes
+        LIMIT :pageSize 
+        OFFSET (:pageSize * (:page - 1))""")
+    suspend fun getPostalCodes(pageSize: Int, page: Int): List<PostalCodeEntity>
 
-    @Query("SELECT * FROM postal_codes WHERE number LIKE '%' || :query || '%' OR extension LIKE '%' || :query || '%' OR designation LIKE '%' || :query || '%'")
-    suspend fun searchPostalCodes(query: String): List<PostalCodeEntity>
+    @Query("""
+        SELECT * FROM postal_codes 
+        WHERE number LIKE '%' || :query || '%' OR extension LIKE '%' || :query || '%' OR designation LIKE '%' || :query || '%'
+        LIMIT :pageSize 
+        OFFSET (:pageSize * (:page - 1))""")
+    suspend fun searchPostalCodes(pageSize: Int, page: Int, query: String): List<PostalCodeEntity>
+
+    @Query("SELECT COUNT(*) FROM postal_codes")
+    suspend fun countPostalCodes(): Int
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPostalCodes(postalCodes: List<PostalCodeEntity>): LongArray

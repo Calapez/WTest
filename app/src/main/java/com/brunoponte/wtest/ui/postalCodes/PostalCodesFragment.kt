@@ -12,18 +12,24 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.brunoponte.wtest.databinding.PostalCodesFragmentBinding
 import com.brunoponte.wtest.ui.postalCodes.adapter.PostalCodeListAdapter
+import com.brunoponte.wtest.ui.postalCodes.adapter.PostalCodeListInteraction
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.postal_codes_fragment.*
 
 @AndroidEntryPoint
-class PostalCodesFragment : Fragment() {
+class PostalCodesFragment : Fragment(), PostalCodeListInteraction {
 
     private lateinit var binding: PostalCodesFragmentBinding
 
     private val viewModel: PostalCodesViewModel by viewModels()
-    private val listAdapter = PostalCodeListAdapter().apply {
+    private val listAdapter = PostalCodeListAdapter(this).apply {
         stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy
             .PREVENT_WHEN_EMPTY
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.getFirstPostalCodes()
     }
 
     override fun onCreateView(
@@ -54,11 +60,20 @@ class PostalCodesFragment : Fragment() {
         }
     }
 
+    override fun onIndexReached(index: Int) {
+        // Reached a new element in Recycler View, update scroll position in VM
+        viewModel.onChangePostalCodeScrollPosition(index)
+    }
+
     private fun setupViewModelObservers() {
         viewModel.postalCodes.observe(viewLifecycleOwner) { postalCodes ->
             val newList = postalCodes?.map { it.copy() }?.toMutableList()
             listAdapter.submitList(newList)
-            listAdapter.notifyDataSetChanged()
+            //listAdapter.notifyDataSetChanged()
+        }
+
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            progress.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
     }
 }

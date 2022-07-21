@@ -5,5 +5,5 @@ import com.brunoponte.wtest.domainModels.PostalCode
 interface IPostalCodeRepository {
     suspend fun fetchPostalCodes()
 
-    suspend fun searchPostalCodes(query: String) : List<PostalCode>
+    suspend fun searchPostalCodes(pageSize: Int, page: Int, query: String) : List<PostalCode>
 }
