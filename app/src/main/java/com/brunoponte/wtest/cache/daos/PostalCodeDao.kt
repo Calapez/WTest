@@ -10,12 +10,6 @@ import com.brunoponte.wtest.cache.entities.PostalCodeEntity
 interface PostalCodeDao {
 
     @Query("""
-        SELECT * FROM postal_codes
-        LIMIT :pageSize 
-        OFFSET (:pageSize * (:page - 1))""")
-    suspend fun getPostalCodes(pageSize: Int, page: Int): List<PostalCodeEntity>
-
-    @Query("""
         SELECT * FROM postal_codes 
         WHERE number LIKE '%' || :query || '%' OR extension LIKE '%' || :query || '%' OR designation LIKE '%' || :query || '%'
         LIMIT :pageSize 

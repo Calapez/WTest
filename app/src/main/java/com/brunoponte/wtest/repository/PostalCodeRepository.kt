@@ -34,13 +34,11 @@ class PostalCodeRepository(
 
     override suspend fun searchPostalCodes(pageSize: Int, page: Int, query: String) : List<PostalCode> {
         try {
-            val x = PostalCodeEntityMapper.toDomainModelList(if (query.isEmpty()) postalCodeDao.getPostalCodes(pageSize, page)
-            else postalCodeDao.searchPostalCodes(pageSize, page, query))
+            val x = PostalCodeEntityMapper.toDomainModelList(postalCodeDao.searchPostalCodes(pageSize, page, query))
             return x
         } catch (e: Exception) {
             return listOf()
         }
-
     }
 
     private suspend fun getPostalCodesFromNetwork() : List<PostalCode> {
