@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.brunoponte.wtest.R
 import com.brunoponte.wtest.databinding.DashboardFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,16 +31,18 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.button1.isEnabled = viewModel.loadedPostalCodes
         setupViewModelObservers()
 
         binding.button1.setOnClickListener {
-            // Navigate To Search Postal Codes
+            findNavController().navigate(R.id.action_dashboardFragment_to_postalCodesFragment)
         }
     }
 
     private fun setupViewModelObservers() {
         viewModel.loading.observe(viewLifecycleOwner) { loading ->
             binding.textTransferingData.visibility = if (loading) View.VISIBLE else View.INVISIBLE
+            binding.button1.isEnabled = viewModel.loadedPostalCodes
         }
     }
 }

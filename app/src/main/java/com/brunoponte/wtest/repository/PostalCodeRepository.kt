@@ -12,11 +12,14 @@ import org.apache.commons.csv.CSVParser
 import java.net.URL
 
 class PostalCodeRepository(
-    private val requestService: IRequestService,
     private val postalCodeDao: PostalCodeDao
 ) : IPostalCodeRepository {
 
     override suspend fun fetchPostalCodes() {
+        if (postalCodeDao.getPostalCodes().isNotEmpty()) {
+            // Postal Codes already in cache, don't fetch in network.
+            return
+        }
 
         try {
             val postalCodes = getPostalCodesFromNetwork()
@@ -30,9 +33,14 @@ class PostalCodeRepository(
     }
 
     override suspend fun searchPostalCodes(query: String) : List<PostalCode> {
-        val postalCodes = PostalCodeEntityMapper.toDomainModelList(postalCodeDao.getPostalCodes())
-        // TODO Filter postal codes by name and code -> query
-        return postalCodes
+        try {
+            val x = PostalCodeEntityMapper.toDomainModelList(if (query.isEmpty()) postalCodeDao.getPostalCodes()
+            else postalCodeDao.searchPostalCodes(query))
+            return x
+        } catch (e: Exception) {
+            return listOf()
+        }
+
     }
 
     private suspend fun getPostalCodesFromNetwork() : List<PostalCode> {

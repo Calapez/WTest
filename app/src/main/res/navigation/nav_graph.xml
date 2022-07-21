@@ -10,6 +10,16 @@
         android:name="com.brunoponte.wtest.ui.dashboard.DashboardFragment"
         android:label="DashboardFragment"
         tools:layout="@layout/dashboard_fragment" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_postalCodesFragment"
+            app:destination="@id/postalCodesFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/postalCodesFragment"
+        android:name="com.brunoponte.wtest.ui.postalCodes.PostalCodesFragment"
+        android:label="PostalCodesFragment"
+        tools:layout="@layout/postal_codes_fragment" />
+
 
 </navigation>

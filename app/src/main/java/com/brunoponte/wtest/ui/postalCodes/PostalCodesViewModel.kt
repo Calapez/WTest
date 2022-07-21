@@ -1,7 +1,8 @@
-package com.brunoponte.wtest.ui.dashboard
+package com.brunoponte.wtest.ui.postalCodes
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.brunoponte.wtest.domainModels.PostalCode
 import com.brunoponte.wtest.repository.IPostalCodeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -10,24 +11,22 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DashboardViewModel
+class PostalCodesViewModel
 @Inject
 constructor(
     private val postalCodeRepo: IPostalCodeRepository
 ) : ViewModel() {
-    var loadedPostalCodes = false
-    val loading: MutableLiveData<Boolean> = MutableLiveData(false)
+
+    val postalCodes: MutableLiveData<List<PostalCode>?> = MutableLiveData(null)
 
     init {
-        loadData()
+        searchPostalCodes("")
     }
 
-    private fun loadData() {
+    fun searchPostalCodes(query: String?) {
         CoroutineScope(Dispatchers.IO).launch {
-            loading.postValue(true)
-            postalCodeRepo.fetchPostalCodes()
-            loadedPostalCodes = true
-            loading.postValue(false)
+            val result = postalCodeRepo.searchPostalCodes(query ?: "")
+            postalCodes.postValue(result)
         }
     }
 }

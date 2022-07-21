@@ -12,6 +12,9 @@ interface PostalCodeDao {
     @Query("SELECT * FROM postal_codes")
     suspend fun getPostalCodes(): List<PostalCodeEntity>
 
+    @Query("SELECT * FROM postal_codes WHERE number LIKE '%' || :query || '%' OR extension LIKE '%' || :query || '%' OR designation LIKE '%' || :query || '%'")
+    suspend fun searchPostalCodes(query: String): List<PostalCodeEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPostalCodes(postalCodes: List<PostalCodeEntity>): LongArray
 

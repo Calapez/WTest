@@ -16,7 +16,7 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideRepoRepository(requestService: IRequestService, postalCodeDao: PostalCodeDao) : IPostalCodeRepository {
-        return PostalCodeRepository(requestService, postalCodeDao)
+    fun provideRepoRepository(postalCodeDao: PostalCodeDao) : IPostalCodeRepository {
+        return PostalCodeRepository(postalCodeDao)
     }
 }
