@@ -11,13 +11,16 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.brunoponte.wtest.databinding.PostalCodesFragmentBinding
+import com.brunoponte.wtest.domainModels.PostalCode
 import com.brunoponte.wtest.ui.postalCodeList.adapter.PostalCodeListAdapter
 import com.brunoponte.wtest.ui.postalCodeList.adapter.PostalCodeListInteraction
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.postal_codes_fragment.*
 
 @AndroidEntryPoint
-class PostalCodesFragment : Fragment(), PostalCodeListInteraction {
+class PostalCodesFragment(
+    private val postalCodeSelectAction: ((PostalCode) -> Unit)? = null
+) : CustomBottomSheetDialogFragment(), PostalCodeListInteraction {
 
     private lateinit var binding: PostalCodesFragmentBinding
 
@@ -26,6 +29,8 @@ class PostalCodesFragment : Fragment(), PostalCodeListInteraction {
         stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy
             .PREVENT_WHEN_EMPTY
     }
+
+    override var fullscreen = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +62,13 @@ class PostalCodesFragment : Fragment(), PostalCodeListInteraction {
 
         searchView.doOnTextChanged { text, _, _, _ ->
             viewModel.searchPostalCodes(text.toString())
+        }
+    }
+
+    override fun onClick(postalCode: PostalCode) {
+        postalCodeSelectAction?.let {
+            it.invoke(postalCode)
+            dismiss()
         }
     }
 

@@ -8,6 +8,8 @@ import com.brunoponte.wtest.databinding.PostalCodeListItemBinding
 import com.brunoponte.wtest.domainModels.PostalCode
 
 interface PostalCodeListInteraction {
+    fun onClick(postalCode: PostalCode)
+
     fun onIndexReached(index: Int)
 }
 
@@ -17,7 +19,7 @@ class PostalCodeListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostalCodeViewHolder {
         val itemBinding = PostalCodeListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PostalCodeViewHolder(itemBinding)
+        return PostalCodeViewHolder(itemBinding, interaction)
     }
 
     override fun onBindViewHolder(holder: PostalCodeViewHolder, position: Int) {
