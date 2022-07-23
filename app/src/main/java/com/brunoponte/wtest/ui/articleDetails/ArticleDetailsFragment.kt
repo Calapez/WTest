@@ -1,11 +1,11 @@
 package com.brunoponte.wtest.ui.articleDetails
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.brunoponte.wtest.R
@@ -37,6 +37,16 @@ class ArticleDetailsFragment : Fragment() {
 
         val articleId = args.articleId
         viewModel.getArticleFromId(articleId)
+
+        binding.scrollView.viewTreeObserver.addOnScrollChangedListener {
+            val height = resources.getDimensionPixelSize(R.dimen.avatar_height)
+
+            val scrollY = Math.min(Math.max(binding.scrollView.scrollY, 0), height)
+            binding.imageHero.translationY = scrollY / 2f
+
+            val alpha = scrollY / height.toFloat()
+            binding.imageHero.alpha = 1 - alpha
+        }
 
         setupViewModelObservers()
     }
