@@ -11,6 +11,6 @@ interface IRequestService {
     suspend fun getArticles(
         @Query("limit") pageSize: Int,
         @Query("page") page: Int,
-    ) : ArticlesResponse
+    ) : List<ArticleDto>
 
 }

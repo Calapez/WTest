@@ -7,6 +7,7 @@ data class Article (
     val publishDate: String?,
     val heroUrl: String?,
     val author: String?,
+    val avatarUrl: String?,
     val summary: String?,
     val body: String?,
 )

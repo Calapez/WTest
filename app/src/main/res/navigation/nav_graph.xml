@@ -23,10 +23,29 @@
         android:name="com.brunoponte.wtest.ui.postalCodeList.PostalCodesFragment"
         android:label="PostalCodesFragment"
         tools:layout="@layout/postal_codes_fragment" />
+
     <fragment
         android:id="@+id/articlesFragment"
         android:name="com.brunoponte.wtest.ui.articleList.ArticlesFragment"
-        android:label="ArticlesFragment" />
+        android:label="ArticlesFragment"
+        tools:layout="@layout/articles_fragment" >
+        <action
+            android:id="@+id/action_articlesFragment_to_articleDetailsFragment"
+            app:destination="@id/articleDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/articleDetailsFragment"
+        android:name="com.brunoponte.wtest.ui.articleDetails.ArticleDetailsFragment"
+        android:label="ArticleDetailsFragment"
+        tools:layout="@layout/article_details_fragment" >
+
+        <argument
+            android:name="articleId"
+            app:argType="string"
+            android:defaultValue="" />
+
+    </fragment>
 
 
 </navigation>

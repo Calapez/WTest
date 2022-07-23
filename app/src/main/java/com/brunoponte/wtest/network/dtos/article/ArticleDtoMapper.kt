@@ -12,6 +12,7 @@ class ArticleDtoMapper {
             publishDate = dto.publishDate,
             heroUrl = dto.heroUrl,
             author = dto.author,
+            avatarUrl = dto.avatarUrl,
             summary = dto.summary,
             body = dto.body
         )

@@ -29,13 +29,13 @@ class ArticleRepository(
         return ArticleEntityMapper.toDomainModelList(cachedArticles)
     }
 
-    override suspend fun getArticleById(articleId: Long) : Article? {
+    override suspend fun getArticleById(articleId: String) : Article? {
         val articleEntity = articleDao.getArticleById(articleId)
         return articleEntity?.let { ArticleEntityMapper.mapToDomainModel(it) }
     }
 
     private suspend fun getArticlesFromNetwork(pageSize: Int, page: Int) =
         ArticleDtoMapper.toDomainModelList(
-            requestService.getArticles(pageSize, page).articles
+            requestService.getArticles(pageSize, page)
         )
 }

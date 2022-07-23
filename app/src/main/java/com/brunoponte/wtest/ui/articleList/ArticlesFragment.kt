@@ -58,8 +58,8 @@ class ArticlesFragment : Fragment(), ArticleListInteraction {
 
     override fun onClick(position: Int, article: Article) {
         // Navigate to Details Fragment
-        //val action = ReposFragmentDirections.actionReposFragmentToRepoDetailsFragment(repo.id ?: -1)
-        //findNavController().navigate(action)
+        val action = ArticlesFragmentDirections.actionArticlesFragmentToArticleDetailsFragment(article.id)
+        findNavController().navigate(action)
     }
 
     override fun onIndexReached(index: Int) {

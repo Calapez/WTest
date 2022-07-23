@@ -24,6 +24,9 @@ data class ArticleEntity(
     @ColumnInfo(name = "author")
     val author: String?,
 
+    @ColumnInfo(name = "avatar_url")
+    val avatarUrl: String?,
+
     @ColumnInfo(name = "summary")
     val summary: String?,
 

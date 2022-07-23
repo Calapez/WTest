@@ -19,6 +19,9 @@ data class ArticleDto (
     @SerializedName("author")
     val author: String?,
 
+    @SerializedName("avatar")
+    val avatarUrl: String?,
+
     @SerializedName("summary")
     val summary: String?,
 

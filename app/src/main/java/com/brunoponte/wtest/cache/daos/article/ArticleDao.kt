@@ -17,7 +17,7 @@ interface ArticleDao {
     suspend fun getArticles(pageSize: Int, page: Int): List<ArticleEntity>
 
     @Query("SELECT * FROM articles WHERE id = :articleId")
-    suspend fun getArticleById(articleId: Long): ArticleEntity?
+    suspend fun getArticleById(articleId: String): ArticleEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertArticles(articles: List<ArticleEntity>): LongArray

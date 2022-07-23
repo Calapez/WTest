@@ -12,6 +12,7 @@ class ArticleEntityMapper {
             publishDate = entity.publishDate,
             heroUrl = entity.heroUrl,
             author = entity.author,
+            avatarUrl = entity.avatarUrl,
             summary = entity.summary,
             body = entity.body
         )
@@ -22,6 +23,7 @@ class ArticleEntityMapper {
             publishDate = model.publishDate,
             heroUrl = model.heroUrl,
             author = model.author,
+            avatarUrl = model.avatarUrl,
             summary = model.summary,
             body = model.body
         )

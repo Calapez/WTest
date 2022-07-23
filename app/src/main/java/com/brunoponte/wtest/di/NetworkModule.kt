@@ -18,7 +18,7 @@ object NetworkModule {
     @Provides
     fun provideRequestService() : IRequestService {
         return Retrofit.Builder()
-            .baseUrl(Util.articlesEndpointUrl)
+            .baseUrl(Util.articlesEndpoint3Url)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(IRequestService::class.java)
