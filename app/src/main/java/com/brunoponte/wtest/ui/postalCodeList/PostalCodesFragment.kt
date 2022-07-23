@@ -1,7 +1,6 @@
 package com.brunoponte.wtest.ui.postalCodeList
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.brunoponte.wtest.databinding.PostalCodesFragmentBinding
 import com.brunoponte.wtest.domainModels.PostalCode
+import com.brunoponte.wtest.ui.CustomBottomSheetDialogFragment
 import com.brunoponte.wtest.ui.postalCodeList.adapter.PostalCodeListAdapter
 import com.brunoponte.wtest.ui.postalCodeList.adapter.PostalCodeListInteraction
 import dagger.hilt.android.AndroidEntryPoint

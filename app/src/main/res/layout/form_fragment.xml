@@ -77,7 +77,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginHorizontal="15dp"
                 android:backgroundTint="?colorPrimary"
-                android:inputType="text"
+                android:focusable="false"
                 android:hint="Qualidade"/>
 
             <EditText
@@ -88,7 +88,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginHorizontal="15dp"
                 android:backgroundTint="?colorPrimary"
-                android:inputType="text"
+                android:focusable="false"
                 android:hint="####-###, Designação Postal"/>
 
             <View

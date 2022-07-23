@@ -1,4 +1,4 @@
-package com.brunoponte.wtest.ui.postalCodeList
+package com.brunoponte.wtest.ui
 
 import android.app.Dialog
 import android.os.Bundle
