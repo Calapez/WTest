@@ -1,12 +1,11 @@
-package com.brunoponte.wtest.repository
+package com.brunoponte.wtest.repository.postalCode
 
-import com.brunoponte.wtest.cache.daos.PostalCodeDao
-import com.brunoponte.wtest.cache.entities.PostalCodeEntityMapper
+import com.brunoponte.wtest.cache.daos.postalCode.PostalCodeDao
+import com.brunoponte.wtest.cache.entities.postalCode.PostalCodeEntityMapper
 import com.brunoponte.wtest.domainModels.PostalCode
 import com.brunoponte.wtest.helpers.Util
-import com.brunoponte.wtest.network.IRequestService
-import com.brunoponte.wtest.network.PostalCodeDto
-import com.brunoponte.wtest.network.PostalCodeDtoMapper
+import com.brunoponte.wtest.network.dtos.postalCode.PostalCodeDto
+import com.brunoponte.wtest.network.dtos.postalCode.PostalCodeDtoMapper
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import java.net.URL

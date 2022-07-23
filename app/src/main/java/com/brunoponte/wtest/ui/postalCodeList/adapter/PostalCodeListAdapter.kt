@@ -1,4 +1,4 @@
-package com.brunoponte.wtest.ui.postalCodes.adapter
+package com.brunoponte.wtest.ui.postalCodeList.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

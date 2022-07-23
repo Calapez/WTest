@@ -1,4 +1,4 @@
-package com.brunoponte.wtest.cache.entities
+package com.brunoponte.wtest.cache.entities.postalCode
 
 import com.brunoponte.wtest.domainModels.PostalCode
 

@@ -2,7 +2,8 @@ package com.brunoponte.wtest.di
 
 import androidx.room.Room
 import com.brunoponte.wtest.App
-import com.brunoponte.wtest.cache.daos.PostalCodeDao
+import com.brunoponte.wtest.cache.daos.article.ArticleDao
+import com.brunoponte.wtest.cache.daos.postalCode.PostalCodeDao
 import com.brunoponte.wtest.cache.database.AppDatabase
 import dagger.Module
 import dagger.Provides
@@ -27,6 +28,12 @@ object CacheModule {
     @Provides
     fun providePostalCodeDao(db: AppDatabase): PostalCodeDao {
         return db.postalCodeDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideArticleDao(db: AppDatabase): ArticleDao {
+        return db.articleDao()
     }
 
 }

@@ -1,5 +1,6 @@
-package com.brunoponte.wget.di
+package com.brunoponte.wtest.di
 
+import com.brunoponte.wtest.helpers.Util
 import com.brunoponte.wtest.network.IRequestService
 import dagger.Module
 import dagger.Provides
@@ -17,7 +18,7 @@ object NetworkModule {
     @Provides
     fun provideRequestService() : IRequestService {
         return Retrofit.Builder()
-            .baseUrl("https://5bb1cd166418d70014071c8e.mockapi.io/mobile/1-1/articles/")
+            .baseUrl(Util.articlesEndpointUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(IRequestService::class.java)

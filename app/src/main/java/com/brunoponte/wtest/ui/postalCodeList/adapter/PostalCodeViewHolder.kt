@@ -1,4 +1,4 @@
-package com.brunoponte.wtest.ui.postalCodes.adapter
+package com.brunoponte.wtest.ui.postalCodeList.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.brunoponte.wtest.databinding.PostalCodeListItemBinding

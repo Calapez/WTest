@@ -1,4 +1,4 @@
-package com.brunoponte.wtest.ui.postalCodes
+package com.brunoponte.wtest.ui.articleList
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,30 +6,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.brunoponte.wtest.databinding.PostalCodesFragmentBinding
-import com.brunoponte.wtest.ui.postalCodes.adapter.PostalCodeListAdapter
-import com.brunoponte.wtest.ui.postalCodes.adapter.PostalCodeListInteraction
+import com.brunoponte.wtest.databinding.ArticlesFragmentBinding
+import com.brunoponte.wtest.domainModels.Article
+import com.brunoponte.wtest.ui.articleList.listAdapter.ArticleListAdapter
+import com.brunoponte.wtest.ui.articleList.listAdapter.ArticleListInteraction
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.postal_codes_fragment.*
 
 @AndroidEntryPoint
-class PostalCodesFragment : Fragment(), PostalCodeListInteraction {
+class ArticlesFragment : Fragment(), ArticleListInteraction {
 
-    private lateinit var binding: PostalCodesFragmentBinding
+    private lateinit var binding: ArticlesFragmentBinding
+    private val viewModel: ArticlesViewModel by viewModels()
 
-    private val viewModel: PostalCodesViewModel by viewModels()
-    private val listAdapter = PostalCodeListAdapter(this).apply {
+    private val listAdapter = ArticleListAdapter(this).apply {
         stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy
             .PREVENT_WHEN_EMPTY
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.getFirstPostalCodes()
+        viewModel.getFirstArticles()
     }
 
     override fun onCreateView(
@@ -37,7 +37,7 @@ class PostalCodesFragment : Fragment(), PostalCodeListInteraction {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = PostalCodesFragmentBinding.inflate(inflater, container, false)
+        binding = ArticlesFragmentBinding.inflate(inflater, container, false)
         (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         return binding.root
     }
@@ -54,26 +54,26 @@ class PostalCodesFragment : Fragment(), PostalCodeListInteraction {
         }
 
         setupViewModelObservers()
+    }
 
-        searchView.doOnTextChanged { text, _, _, _ ->
-            viewModel.searchPostalCodes(text.toString())
-        }
+    override fun onClick(position: Int, article: Article) {
+        // Navigate to Details Fragment
+        //val action = ReposFragmentDirections.actionReposFragmentToRepoDetailsFragment(repo.id ?: -1)
+        //findNavController().navigate(action)
     }
 
     override fun onIndexReached(index: Int) {
         // Reached a new element in Recycler View, update scroll position in VM
-        viewModel.onChangePostalCodeScrollPosition(index)
+        viewModel.onChangeArticleScrollPosition(index)
     }
 
     private fun setupViewModelObservers() {
-        viewModel.postalCodes.observe(viewLifecycleOwner) { postalCodes ->
-            val newList = postalCodes?.map { it.copy() }?.toMutableList()
-            listAdapter.submitList(newList)
-            //listAdapter.notifyDataSetChanged()
+        viewModel.articles.observe(viewLifecycleOwner) { articles ->
+            listAdapter.submitList(articles.map { it.copy() })
         }
 
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            progress.visibility = if (isLoading) View.VISIBLE else View.GONE
+            binding.progress.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
     }
 }

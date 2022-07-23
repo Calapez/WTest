@@ -1,10 +1,10 @@
-package com.brunoponte.wtest.cache.daos
+package com.brunoponte.wtest.cache.daos.postalCode
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.brunoponte.wtest.cache.entities.PostalCodeEntity
+import com.brunoponte.wtest.cache.entities.postalCode.PostalCodeEntity
 
 @Dao
 interface PostalCodeDao {

@@ -1,9 +1,9 @@
-package com.brunoponte.wtest.ui.postalCodes
+package com.brunoponte.wtest.ui.articleList
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.brunoponte.wtest.domainModels.PostalCode
-import com.brunoponte.wtest.repository.IPostalCodeRepository
+import com.brunoponte.wtest.domainModels.Article
+import com.brunoponte.wtest.repository.article.IArticleRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -11,38 +11,37 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PostalCodesViewModel
+class ArticlesViewModel
 @Inject
 constructor(
-    private val postalCodeRepo: IPostalCodeRepository
+    private val articleRepo: IArticleRepository,
 ) : ViewModel() {
 
-    private var query = ""
     private var scrollPosition = 0
     private var page = 1
 
     val isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
-    val postalCodes: MutableLiveData<List<PostalCode>> = MutableLiveData(listOf())
+    val articles: MutableLiveData<List<Article>> = MutableLiveData(listOf())
 
-    fun getFirstPostalCodes() {
+    fun getFirstArticles() {
         // Fetches the first page of the repos
 
-        if (postalCodes.value?.isNotEmpty() == true) {
+        if (articles.value?.isNotEmpty() == true) {
             // Already got repos
             return
         }
 
         CoroutineScope(Dispatchers.IO).launch {
             isLoading.postValue(true)
-            val result = postalCodeRepo.searchPostalCodes(PAGE_SIZE, 1, query)
+            val result = articleRepo.getArticles(PAGE_SIZE, 1)
             page += 1
             isLoading.postValue(false)
 
-            postalCodes.postValue(result)
+            articles.postValue(result)
         }
     }
 
-    fun onChangePostalCodeScrollPosition(position: Int) {
+    fun onChangeArticleScrollPosition(position: Int) {
         scrollPosition = position
 
         if (reachedEndOfList() && !isLoading.value!!) {
@@ -58,12 +57,12 @@ constructor(
 
                 // Prevents this to be called on first page load
                 if (page > 1) {
-                    val result = postalCodeRepo.searchPostalCodes(PAGE_SIZE, page, query)
+                    val result = articleRepo.getArticles(PAGE_SIZE, page)
 
                     // Append repos
-                    val current = ArrayList(postalCodes.value)
+                    val current = ArrayList(articles.value)
                     current.addAll(result)
-                    postalCodes.postValue(current)
+                    articles.postValue(current)
 
                     page += 1
                 }
@@ -72,23 +71,9 @@ constructor(
         }
     }
 
-    fun searchPostalCodes(newQuery: String?) {
-        query = newQuery ?: ""
-        page = 1
-
-        CoroutineScope(Dispatchers.IO).launch {
-            isLoading.postValue(true)
-            val result = postalCodeRepo.searchPostalCodes(PAGE_SIZE, page, query)
-            page += 1
-            isLoading.postValue(false)
-
-            postalCodes.postValue(result)
-        }
-    }
-
-    private fun reachedEndOfList() = scrollPosition >= postalCodes.value!!.size - 1
+    private fun reachedEndOfList() = scrollPosition >= articles.value!!.size - 1
 
     companion object {
-        const val PAGE_SIZE = 100
+        const val PAGE_SIZE = 10
     }
 }

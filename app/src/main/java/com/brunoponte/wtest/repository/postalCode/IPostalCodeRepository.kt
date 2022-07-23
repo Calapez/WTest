@@ -1,4 +1,4 @@
-package com.brunoponte.wtest.repository
+package com.brunoponte.wtest.repository.postalCode
 
 import com.brunoponte.wtest.domainModels.PostalCode
 

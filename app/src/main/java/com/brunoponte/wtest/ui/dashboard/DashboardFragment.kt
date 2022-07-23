@@ -37,6 +37,10 @@ class DashboardFragment : Fragment() {
         binding.button1.setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_postalCodesFragment)
         }
+
+        binding.button2.setOnClickListener {
+            findNavController().navigate(R.id.action_dashboardFragment_to_articlesFragment)
+        }
     }
 
     private fun setupViewModelObservers() {
