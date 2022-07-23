@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_articlesFragment"
             app:destination="@id/articlesFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_formFragment"
+            app:destination="@id/formFragment" />
     </fragment>
 
     <fragment
@@ -46,6 +49,12 @@
             android:defaultValue="" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/formFragment"
+        android:name="com.brunoponte.wtest.ui.form.FormFragment"
+        android:label="FormFragment"
+        tools:layout="@layout/form_fragment" />
 
 
 </navigation>

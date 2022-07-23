@@ -41,11 +41,15 @@ class DashboardFragment : Fragment() {
         binding.button2.setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_articlesFragment)
         }
+
+        binding.button3.setOnClickListener {
+            findNavController().navigate(R.id.action_dashboardFragment_to_formFragment)
+        }
     }
 
     private fun setupViewModelObservers() {
         viewModel.loading.observe(viewLifecycleOwner) { loading ->
-            binding.textTransferingData.visibility = if (loading) View.VISIBLE else View.INVISIBLE
+            binding.textTransferringData.visibility = if (loading) View.VISIBLE else View.INVISIBLE
             binding.button1.isEnabled = viewModel.loadedPostalCodes
         }
     }
