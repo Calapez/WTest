@@ -2,54 +2,53 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/buttonPostalCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginHorizontal="30dp"
-        android:padding="10dp"
-        android:text="Codigos Postais"/>
+        android:padding="13dp"
+        android:text="@string/button_postal_codes"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonArticles"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button1"
-        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@id/buttonPostalCode"
+        android:layout_marginTop="20dp"
         android:layout_marginHorizontal="30dp"
-        android:padding="10dp"
-        android:text="Artigos"/>
+        android:padding="13dp"
+        android:text="@string/button_articles"/>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/buttonForm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button2"
-        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@id/buttonArticles"
+        android:layout_marginTop="20dp"
         android:layout_marginHorizontal="30dp"
-        android:padding="10dp"
-        android:text="Formulário"/>
+        android:padding="13dp"
+        android:text="@string/button_form"/>
 
     <TextView
         android:id="@+id/textTransferringData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center_horizontal"
-        android:text="A transferir códigos postais..."
+        android:text="@string/transferring_postal_codes"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

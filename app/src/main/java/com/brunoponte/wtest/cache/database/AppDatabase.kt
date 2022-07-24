@@ -17,7 +17,7 @@ abstract class AppDatabase: RoomDatabase() {
     abstract fun articleDao(): ArticleDao
 
     companion object{
-        const val DATABASE_NAME = "wtest_repos_db"
+        const val DATABASE_NAME = "wtest_db"
     }
 
 }

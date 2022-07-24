@@ -1,10 +1,22 @@
 <resources>
     <string name="app_name">WTest</string>
     <string name="not_applicable">N/A</string>
-    <string name="repo_owner_login">By %s</string>
-    <string name="repo_description_label">Description</string>
-    <string name="repo_language_label">Language</string>
-    <string name="repo_watchers_label">Watchers</string>
-    <string name="repo_forks_label">Forks</string>
-    <string name="repo_last_update_label">Last Update</string>
+    <string name="button_postal_codes">Códigos Postais</string>
+    <string name="button_articles">Artigos</string>
+    <string name="button_form">Formulário</string>
+    <string name="transferring_postal_codes">A transferir códigos postais…</string>
+    <string name="search_postal_codes_hint">Pesquisar código postal</string>
+    <string name="form_field_error">Este campo está incorreto.</string>
+    <string name="form_free_text_hint">Texto livre…</string>
+    <string name="form_email_hint">email@example.com</string>
+    <string name="form_numbers_hint">123456789…</string>
+    <string name="form_caps_hint">AAA-AA…</string>
+    <string name="form_date_hint">Domingo, 18 de Setembro de 2020</string>
+    <string name="form_quality_hint">Qualidade</string>
+    <string name="form_postal_code_hint">####-###, Designação Postal</string>
+    <string name="form_submit">Submeter</string>
+
+
+
+
 </resources>

@@ -1,7 +1,6 @@
 package com.brunoponte.wtest.network
 
 import com.brunoponte.wtest.network.dtos.article.ArticleDto
-import com.brunoponte.wtest.network.dtos.article.ArticlesResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

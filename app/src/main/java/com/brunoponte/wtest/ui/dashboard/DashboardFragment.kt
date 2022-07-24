@@ -31,18 +31,18 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.button1.isEnabled = viewModel.loadedPostalCodes
+        binding.buttonPostalCode.isEnabled = viewModel.loadedPostalCodes
         setupViewModelObservers()
 
-        binding.button1.setOnClickListener {
+        binding.buttonPostalCode.setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_postalCodesFragment)
         }
 
-        binding.button2.setOnClickListener {
+        binding.buttonArticles.setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_articlesFragment)
         }
 
-        binding.button3.setOnClickListener {
+        binding.buttonForm.setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_formFragment)
         }
     }
@@ -50,7 +50,7 @@ class DashboardFragment : Fragment() {
     private fun setupViewModelObservers() {
         viewModel.loading.observe(viewLifecycleOwner) { loading ->
             binding.textTransferringData.visibility = if (loading) View.VISIBLE else View.INVISIBLE
-            binding.button1.isEnabled = viewModel.loadedPostalCodes
+            binding.buttonPostalCode.isEnabled = viewModel.loadedPostalCodes
         }
     }
 }

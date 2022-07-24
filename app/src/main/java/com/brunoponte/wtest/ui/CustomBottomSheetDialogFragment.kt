@@ -27,7 +27,6 @@ abstract class CustomBottomSheetDialogFragment : BottomSheetDialogFragment()
                     behavior.state = BottomSheetBehavior.STATE_EXPANDED
                 }
             }
-
             dialog
         }
     }

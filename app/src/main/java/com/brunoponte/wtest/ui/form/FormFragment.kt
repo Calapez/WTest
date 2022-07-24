@@ -8,12 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.brunoponte.wtest.R
 import com.brunoponte.wtest.databinding.FormFragmentBinding
 import com.brunoponte.wtest.ui.form.qualityList.QualityListFragment
 import com.brunoponte.wtest.ui.postalCodeList.PostalCodesFragment
 import dagger.hilt.android.AndroidEntryPoint
-
 
 @AndroidEntryPoint
 class FormFragment : Fragment() {

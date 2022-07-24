@@ -23,7 +23,7 @@ class ArticleRepository(
             e.printStackTrace()
         }
 
-        // Always returns the Repos stored in the cache
+        // Always returns the Articles stored in the cache
         val cachedArticles = articleDao.getArticles(pageSize = pageSize, page = page)
 
         return ArticleEntityMapper.toDomainModelList(cachedArticles)

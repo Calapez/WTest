@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.brunoponte.wtest.databinding.QualityListItemBinding
 
-
 interface QualityListInteraction {
     fun onClick(position: Int, quality: String)
 }

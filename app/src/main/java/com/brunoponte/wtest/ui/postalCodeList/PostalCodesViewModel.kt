@@ -25,10 +25,10 @@ constructor(
     val postalCodes: MutableLiveData<List<PostalCode>> = MutableLiveData(listOf())
 
     fun getFirstPostalCodes() {
-        // Fetches the first page of the repos
+        // Fetches the first page of the postal codes
 
         if (postalCodes.value?.isNotEmpty() == true) {
-            // Already got repos
+            // Already got postal codes
             return
         }
 
@@ -46,7 +46,7 @@ constructor(
         scrollPosition = position
 
         if (reachedEndOfList() && !isLoading.value!!) {
-            // Reached end of current page and isn't loading repos. Must load next page.
+            // Reached end of current page and isn't loading postal codes. Must load next page.
             getNextPage()
         }
     }
@@ -60,7 +60,7 @@ constructor(
                 if (page > 1) {
                     val result = postalCodeRepo.searchPostalCodes(PAGE_SIZE, page, query)
 
-                    // Append repos
+                    // Append postal codes
                     val current = ArrayList(postalCodes.value)
                     current.addAll(result)
                     postalCodes.postValue(current)

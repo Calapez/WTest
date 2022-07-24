@@ -45,7 +45,7 @@ constructor(
         scrollPosition = position
 
         if (reachedEndOfList() && !isLoading.value!!) {
-            // Reached end of current page and isn't loading repos. Must load next page.
+            // Reached end of current page and isn't loading articles. Must load next page.
             getNextPage()
         }
     }
@@ -59,7 +59,7 @@ constructor(
                 if (page > 1) {
                     val result = articleRepo.getArticles(PAGE_SIZE, page)
 
-                    // Append repos
+                    // Append articles
                     val current = ArrayList(articles.value)
                     current.addAll(result)
                     articles.postValue(current)

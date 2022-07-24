@@ -38,8 +38,9 @@ class FormViewModel: ViewModel() {
         val NUMBERS_REGEX = "[0-9]+"
         numbersValid.value = NUMBERS_REGEX.toRegex().matches(numbers)
 
-        val NO_DIATRICS = "^[.\\p{L}]*$"
-        capsOnlyValid.value = capsOnly.length in 3..7 && NO_DIATRICS.toRegex().matches(capsOnly)
+        capsOnlyValid.value = capsOnly.length in 3..7 && capsOnly.none {
+            it.isLowerCase() || (!it.isLetter() && it != '-')
+        }
 
         dateValid.value = date.isNotEmpty()
 

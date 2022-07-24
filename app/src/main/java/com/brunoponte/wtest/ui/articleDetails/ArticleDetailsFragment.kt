@@ -38,28 +38,6 @@ class ArticleDetailsFragment : Fragment() {
         val articleId = args.articleId
         viewModel.getArticleFromId(articleId)
 
-        binding.scrollView.viewTreeObserver.addOnScrollChangedListener {
-            /*
-            val height = resources.getDimensionPixelSize(R.dimen.avatar_height)
-
-            val scrollY = Math.min(Math.max(binding.scrollView.scrollY, 0), height)
-            binding.imageHero.translationY = scrollY / 2f
-
-            val alpha = scrollY / height.toFloat()
-            binding.imageHero.alpha = 1 - alpha
-             */
-
-
-            /*
-            val top: Int = binding.scrollView.scrollY // Increases when scrolling up ^
-
-            if (top != 0) {
-                val newTop = (top * .5f).toInt()
-                binding.imageHero.top = if (newTop < 0) 0 else newTop
-            }
-             */
-        }
-
         setupViewModelObservers()
     }
 
