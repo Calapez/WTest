@@ -10,11 +10,15 @@ Funcionalidade 2
 Quando os códigos postais estiverem transferidos, é possível navegar para o ecrã de pesquisa de códigos postais. A filtração dos códigos postais com base na pesquisa é feita de forma assíncrona através de queries SQLite aos códigos postais que estão em cache, o que apresenta uma boa performance, uma vez que não coloca demasiada carga na memória do dispositivo.
 Nota: Foi implementada paginação neste ecrã de forma a diminuir o número itens que são manipulados na lista apresentada inicialmente, quando não existe pesquisa.
 
+Por falta de tempo, não foi possível garantir que o teclado não se sobrepõe a entradas da lista, e a pesquisa são ficou 100% perfeita de acordo com os exemplos apresentados no enunciado.
+
 Funcionalidade 3
 
 Semelhante aos códigos postais, os artigos são transferidos e guardados em cache. A diferença é que os artigos são transferidos sempre que se navega para o ecrã que visualizar artigos, de forma a manter os dados o mais atualizados possível. Se, no entanto, não existir internet, os artigos em cache serão apresentados ao utilizador.
-O ecrã de lista de artigos também possui paginação.
+O ecrã de lista de artigos também possui paginação, para prevenir que todos os dados sejam transferidos de uma vez.
 Em relação ao ecrã de detalhes do artigo, foi utilizada a biblioteca Glide para apresentar o avatar como imagem através do URL.
+
+Por falta de tempo, não foi possível garantir que a imagem apresenta uma altura mínima, mesmo fazendo scroll.
 
 Funcionalidade 4
 
